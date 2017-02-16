@@ -1,0 +1,33 @@
+
+service: aws-nodejs # NOTE: BusDataService
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+  region: us-west-1
+
+  iamRoleStatements:
+     - Effect: "Allow"
+       Action:
+         - "dynamodb:*"
+       Resource: "*"
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+            path: hello
+            method: get
+  retrieve:
+    handler: handler.retrieve
+    events:
+      - http:
+            path: retrieve
+            method: get
+  getdata:
+    handler: handler.getdata
+    events:
+      - http:
+            path: getdata
+            method: get
